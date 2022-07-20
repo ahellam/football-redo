@@ -6,10 +6,10 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const signUpUrl = "http://localhost:3000/users"
 
-  const navigate = useNavigate()
+  let navigate = useNavigate()
 
-  const handleSignUp = () => {
-    // e.preventDefault()
+  const handleSignUp = (e) => {
+    e.preventDefault()
     const signUpData = {
       username: username,
       password: password,
@@ -29,14 +29,14 @@ const SignUp = () => {
   }
 
   return (
-    <div className="w-full max-w-xs m-1">
-      <form id="sign-up"className="shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="w-full max-w-xs m-auto">
+      <form id="sign-up"className="rounded px-8 pt-6 pb-8 mb-4">
         <h1 className="mb-6 text-center text-xl font-bold text-black">
           Sign up to get started
         </h1>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
             id="username"
             type="text"
             placeholder="Username"
@@ -46,7 +46,7 @@ const SignUp = () => {
         </div>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
             id="password"
             type="password"
             placeholder="Password"
@@ -56,8 +56,8 @@ const SignUp = () => {
         </div>
         <div className="items-center text-center justify-between">
           <button
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
             onClick={handleSignUp}
           >
             Sign Up
@@ -66,7 +66,9 @@ const SignUp = () => {
             Already a player?
           </p>
           <div className="mt-4">
-          <button className="font-bold text-lg text-blue-600" onClick={() => linkToLogin}>
+          <button className="font-bold text-lg text-green-500 hover:text-green-600" 
+          type="button"
+          onClick={linkToLogin}>
               Log in
             </button>
           </div>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
+import Navigation from "./Navigation";
 
 function App() {
   const profileUrl = "http://localhost:3000/profile";
@@ -28,11 +29,12 @@ function App() {
   return (
     <div className="">
       <Router>
+        <Navigation user={user} setUser={setUser}/>
         <Routes>
           <Route path="/"
             element={
               user ? (
-                <Home user={user} setUser={setUser} />
+                <Home user={user} />
               ) : (
                 <Login user={user} setUser={setUser} />
               )

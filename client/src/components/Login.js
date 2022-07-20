@@ -7,9 +7,10 @@ const Login = ({ user, setUser }) => {
   
   const loginUrl = "http://localhost:3000/login"
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     const loginData = {
       username: username,
       password: password,
@@ -39,14 +40,14 @@ const Login = ({ user, setUser }) => {
   }
 
   return (
-    <div className="w-full max-w-xs m-1">
-      <form id="log-in" className="shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="w-full max-w-xs m-auto">
+      <form id="log-in" className="rounded px-8 pt-6 pb-8 mb-4">
         <h1 className="mb-6 text-center text-xl font-bold text-black">
           Log in to start drafting
         </h1>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
             id="username"
             type="text"
             placeholder="Username"
@@ -56,7 +57,7 @@ const Login = ({ user, setUser }) => {
         </div>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
             id="password"
             type="password"
             placeholder="Password"
@@ -66,8 +67,8 @@ const Login = ({ user, setUser }) => {
         </div>
         <div className="items-center text-center justify-between">
           <button
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
             onClick={handleLogin}
           >
             Log in
@@ -76,7 +77,9 @@ const Login = ({ user, setUser }) => {
             Don't have an account?
           </p>
           <div className="mt-4">
-            <button className="font-bold text-lg text-blue-600" onClick={() => linkToSignup}>
+            <button className="font-bold text-lg text-green-500 hover:text-green-600" 
+            type="button"
+            onClick={linkToSignup}>
               Sign up
             </button>
           </div>
