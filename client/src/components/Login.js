@@ -6,29 +6,14 @@ const Login = ({ user, setUser }) => {
   const [password, setPassword] = useState("");
   
   const loginUrl = "http://localhost:3000/login"
-  // const profileUrl = "http://localhost:3000/profile"
-  // const token = localStorage.getItem("token")
 
   const navigate = useNavigate();
 
-  // THIS ISNT QUITE WORKING PROPERLY BECAUSE ASYNC.. 
   const handleLogin = async () => {
     const loginData = {
       username: username,
       password: password,
     };
-
-    // let response = await fetch(loginUrl, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(loginData)
-    //   })
-
-    //   const result = await response.json()
-    //   console.log(result)
-
-      // FUCKIN STUCK HERE
-
 
     fetch(loginUrl, {
       method: "POST",

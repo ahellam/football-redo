@@ -21,7 +21,6 @@ const SignUp = () => {
       body: JSON.stringify(signUpData)
     })
     .then(res => res.json())
-    // .then((json) => console.log(json))
     .then(setUsername(""), setPassword(""))
   };
 
