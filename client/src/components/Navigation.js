@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import { NavLink } from "react-router-dom";
 
 
-const Navigation = ({ user, setUser}) => {
+const Navigation = ({ user, setUser, setPositions}) => {
 
   const navigate = useNavigate();
 
@@ -11,6 +11,7 @@ const Navigation = ({ user, setUser}) => {
     console.log('logged out')
     localStorage.removeItem("token")
     setUser(null)
+    setPositions(null)
     navigate('/login')
   }
 
@@ -19,13 +20,14 @@ const Navigation = ({ user, setUser}) => {
       <h1 className="font-extrabold text-2xl col-span-2">
         <span className="text-green-500">Fantasy</span>Draft
       </h1>
-      <button
-        className="col-start-12 text-sm font-light border-[1px] border-white rounded-[4px] 
+      {user && <h2 className="col-start-11 pt-[1px] text-green-500 m-auto">{`Welcome ${user.username}`}</h2>}
+      {user && <button
+        className="mx-[8px] my-[2px] col-start-12 text-sm font-light border-[1px] border-white rounded-[4px] 
         hover:border-[2px] active:font-semibold"
         onClick={handleLogout}
       >
         Log Out
-      </button>
+      </button>}
     </div>
   );
 };

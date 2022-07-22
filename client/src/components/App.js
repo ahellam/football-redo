@@ -6,35 +6,53 @@ import Signup from "./Signup";
 import Navigation from "./Navigation";
 
 function App() {
-  const profileUrl = "http://localhost:3000/profile";
+  const baseUrl = "http://localhost:3000"
 
   const [user, setUser] = useState(null);
+  const [positions, setPositions] = useState(null);
 
   useEffect(() => {
+    const profileUrl = `${baseUrl}/profile`;
+    const authHeaders = { headers: { Authorization: `Bearer ${localStorage.token}` } }
+
     if (localStorage.token) {
-      fetch(profileUrl, {
-        headers: { Authorization: `Bearer ${localStorage.token}` },
-      })
+      fetch(profileUrl, authHeaders)
         .then((res) => res.json())
         .then((result) => {
           if (result.id) {
             setUser(result);
           }
-        });
+        })
     }
-  }, []);
+  },[]);
 
-  // console.log(user)
+  useEffect(() => {
+    const positionsUrl = `${baseUrl}/positions`
+    const authHeaders = { headers: { Authorization: `Bearer ${localStorage.token}` } }
+
+    if (localStorage.token) {
+    fetch(positionsUrl, authHeaders)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data[0].id) {
+            setPositions(data);
+          }
+        })
+    }
+    // this local storage token in the dependencies is a total hack... gotta be a better way
+  },[localStorage.token])
+
+  // positions && console.log(positions);
 
   return (
     <div className="">
       <Router>
-        <Navigation user={user} setUser={setUser}/>
+        <Navigation user={user} setUser={setUser} setPositions={setPositions}/>
         <Routes>
           <Route path="/"
             element={
               user ? (
-                <Home user={user} />
+                <Home user={user} positions={positions}/>
               ) : (
                 <Login user={user} setUser={setUser} />
               )
