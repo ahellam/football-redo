@@ -40,6 +40,7 @@ function App() {
         })
     }
     // this local storage token in the dependencies is a total hack... gotta be a better way
+    // eslint-disable-next-line
   },[localStorage.token])
 
   // positions && console.log(positions);
