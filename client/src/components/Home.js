@@ -1,12 +1,20 @@
 import Quarterbacks from "./Quarterbacks"
 import Recievers from "./Recievers"
 import Runningbacks from "./Runningbacks"
+import React, { useState } from "react";
 
 const Home = ({ positions }) => {
-  // console.log(positions)
+  const [balance, setBalance] = useState(1700)
+  // const [selectedQB, setSelectedQB] = useState(null)
+  // const [selectedWR, setSelectedWR] = useState(null)
+  // const [selectedRB, setSelectedRB] = useState(null)
 
   return (
-    <div className="m-1 grid grid-flow-col">
+  <div>
+    <div className="mt-2 p-1 text-xl font-semibold text-center">
+      <p>Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
+    </div>
+    <div id="positions-containter" className="m-1 grid grid-flow-col justify-items-center">
       <div id="qb-container">
         {positions && positions.find(position => position.id === 1)
         .players.map(quarterback => (
@@ -26,6 +34,7 @@ const Home = ({ positions }) => {
         ))}
       </div>
     </div>
+  </div>
   )
 }
 

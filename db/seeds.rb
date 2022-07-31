@@ -232,64 +232,64 @@ pl23 = Player.create(
 create_games(pl23.id, [11.7, 18.0 , 19.7, 28.0, 30.4, 7.5, 0, 21.4, 9.7, 13.4, 38.5, 18.9, 14.9, 15.4, 16.2, 0, 18.7, 26.4])
 
 pl24 = Player.create(
-  name: "", 
-  image: "",
+  name: "Derrick Henjury", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/ved7bttliyuaps02d77d",
   rank: 4,
   position_id: po3.id,
   price: 700,
   canDelete: false,)
-create_games(pl24.id, [])
+create_games(pl24.id, [9.2, 44.7, 17.9, 24.7, 31.0, 34.6, 15.4, 6.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 pl25 = Player.create(
-  name: "Derrick Henjury", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/ved7bttliyuaps02d77d",
+  name: "Dalvin Cook", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/eb7vfxsratwcfr03ufau",
   rank: 5,
   position_id: po3.id,
   price: 600,
   canDelete: false,)
-create_games(pl25.id, [9.2, 44.7, 17.9, 24.7, 31.0, 34.6, 15.4, 6.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+create_games(pl25.id, [17.4, 15.8, 0, 5.4, 0, 21.3, 0, 7.8, 13.7, 19.3, 21.0, 11.3, 0, 34.7, 10.1, 0, 2.8, 8.7])
 
 pl26 = Player.create(
-  name: "Dalvin Cook", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/eb7vfxsratwcfr03ufau",
+  name: "Joe Mixon", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/pucb3gqsidpxzivdp9hd",
   rank: 6,
   position_id: po3.id,
   price: 500,
   canDelete: false,)
-create_games(pl26.id, [17.4, 15.8, 0, 5.4, 0, 21.3, 0, 7.8, 13.7, 19.3, 21.0, 11.3, 0, 34.7, 10.1, 0, 2.8, 8.7])
+create_games(pl26.id, [23.0, 7.6, 9.9, 13.2, 10.0, 23.8, 11.9, 23.1, 25.5, 0, 24.3, 30.3, 9.4, 7.8, 6.5, 28.5, 12.1, 0])
 
 pl27 = Player.create(
-  name: "Joe Mixon", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/pucb3gqsidpxzivdp9hd",
+  name: "D'Andre Swift", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/lt7dpkcsisbq1txestzs",
   rank: 7,
   position_id: po3.id,
   price: 400,
   canDelete: false,)
-create_games(pl27.id, [23.0, 7.6, 9.9, 13.2, 10.0, 23.8, 11.9, 23.1, 25.5, 0, 24.3, 30.3, 9.4, 7.8, 6.5, 28.5, 12.1, 0])
+create_games(pl27.id, [20.4, 9.8, 20.2, 6.9, 19.4, 15.2, 24.4, 5.6, 0, 15.0, 21.1, 2.4, 0, 0, 0, 0, 4.9, 12.6])
 
 pl28 = Player.create(
-  name: "D'Andre Swift", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/lt7dpkcsisbq1txestzs",
+  name: "Leonard Fournette", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/jcmgyeiruehjjdpfkyf4",
   rank: 8,
   position_id: po3.id,
   price: 300,
   canDelete: false,)
-create_games(pl28.id, [20.4, 9.8, 20.2, 6.9, 19.4, 15.2, 24.4, 5.6, 0, 15.0, 21.1, 2.4, 0, 0, 0, 0, 4.9, 12.6])
+create_games(pl28.id, [8.4, 9.6, 4.9, 15.3, 19.0, 27.7, 16.0, 5.8, 0, 13.2, 10.4, 40.6, 18.7, 21.2, 10.2, 0, 0, 0])
 
 pl29 = Player.create(
-  name: "Leonard Fournette", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/jcmgyeiruehjjdpfkyf4",
+  name: "Najee Harris", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/lwcct10u7lfzsgtaoqce",
   rank: 9,
   position_id: po3.id,
   price: 200,
   canDelete: false,)
-create_games(pl29.id, [8.4, 9.6, 4.9, 15.3, 19.0, 27.7, 16.0, 5.8, 0, 13.2, 10.4, 40.6, 18.7, 21.2, 10.2, 0, 0, 0])
+create_games(pl29.id, [5.4, 16.6, 21.2, 18.1, 21.2, 21.7, 0, 19.5, 15.3, 15.3, 14.4, 5.2, 13.2, 23.9, 3.6, 13.5, 28.1, 7.5])
 
 pl30 = Player.create(
-  name: "Najee Harris", 
-  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/lwcct10u7lfzsgtaoqce",
+  name: "James Conner", 
+  image: "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/nq7mtvvxmgc2vukwwcpo",
   rank: 10,
   position_id: po3.id,
   price: 100,
   canDelete: false,)
-create_games(pl30.id, [5.4, 16.6, 21.2, 18.1, 21.2, 21.7, 0, 19.5, 15.3, 15.3, 14.4, 5.2, 13.2, 23.9, 3.6, 13.5, 28.1, 7.5])
+create_games(pl30.id, [5.3, 2.6, 17.8, 19.6, 10.2, 7.6, 12.4, 14.2, 37.8, 13.9, 18.4, 0, 18.1, 29, 8, 0, 0, 24.3])
