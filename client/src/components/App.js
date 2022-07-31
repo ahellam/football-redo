@@ -7,43 +7,31 @@ import Navigation from "./Navigation";
 
 function App() {
   const baseUrl = "http://localhost:3000"
-
+  const profileUrl = `${baseUrl}/profile`;
+  const positionsUrl = `${baseUrl}/positions`
+  const authHeaders = { headers: { Authorization: `Bearer ${localStorage.token}` } }
   const [user, setUser] = useState(null);
   const [positions, setPositions] = useState(null);
 
+  const fetchProfile = async () => {
+    let profileRes = await fetch(profileUrl, authHeaders)
+      profileRes = await profileRes.json()
+
+    if (profileRes.id) setUser(profileRes)
+  }
+
+  const fetchPositions = async () => {
+    let positionRes = await fetch(positionsUrl, authHeaders)
+      positionRes = await positionRes.json()
+
+    if (positionRes[0].id) setPositions(positionRes);
+  }
+  
   useEffect(() => {
-    const profileUrl = `${baseUrl}/profile`;
-    const authHeaders = { headers: { Authorization: `Bearer ${localStorage.token}` } }
-
-    if (localStorage.token) {
-      fetch(profileUrl, authHeaders)
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.id) {
-            setUser(result);
-          }
-        })
-    }
-  },[]);
-
-  useEffect(() => {
-    const positionsUrl = `${baseUrl}/positions`
-    const authHeaders = { headers: { Authorization: `Bearer ${localStorage.token}` } }
-
-    if (localStorage.token) {
-    fetch(positionsUrl, authHeaders)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data[0].id) {
-            setPositions(data);
-          }
-        })
-    }
-    // this local storage token in the dependencies is a total hack... gotta be a better way
-    // eslint-disable-next-line
-  },[localStorage.token])
-
-  // positions && console.log(positions);
+    if (localStorage.token) fetchProfile()
+    if (localStorage.token) fetchPositions()
+  // eslint-disable-next-line
+  },[localStorage.token]);
 
   return (
     <div className="">
