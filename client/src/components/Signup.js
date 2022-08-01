@@ -8,6 +8,10 @@ const SignUp = () => {
 
   let navigate = useNavigate()
 
+  const linkToLogin = () => {
+    navigate('/login')
+  }
+  
   const handleSignUp = (e) => {
     e.preventDefault()
     const signUpData = {
@@ -22,11 +26,9 @@ const SignUp = () => {
     })
     .then(res => res.json())
     .then(setUsername(""), setPassword(""))
+    .then(linkToLogin())
   };
 
-  const linkToLogin = () => {
-    navigate('/login')
-  }
 
   return (
     <div className="w-full max-w-xs m-auto">

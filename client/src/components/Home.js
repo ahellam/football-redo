@@ -5,9 +5,9 @@ import React, { useState } from "react";
 
 const Home = ({ positions }) => {
   const [balance, setBalance] = useState(1700)
-  // const [selectedQB, setSelectedQB] = useState(null)
-  // const [selectedWR, setSelectedWR] = useState(null)
-  // const [selectedRB, setSelectedRB] = useState(null)
+  const [selectedQB, setSelectedQB] = useState(null)
+  const [selectedWR, setSelectedWR] = useState(null)
+  const [selectedRB, setSelectedRB] = useState(null)
 
   return (
   <div>
