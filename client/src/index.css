@@ -4,8 +4,25 @@
 
 @layer components {
 
+  .player-card {
+    @apply m-1 p-1 rounded-md bg-[#323236] text-white grid grid-cols-3 z-0;
+  }
+
+  .selected-player{
+    @apply p-1 grid grid-cols-3 z-10 
+    min-w-full
+     /* w-[26.5rem] */
+  }
+
   .draft-button {
     @apply m-auto border-[1px] text-sm border-white rounded-[4px] px-5 py-[6px] hover:border-[2px] active:text-green-500 active:border-green-500;
   }
   
+  .draft-button-inactive {
+    @apply m-auto border-[1px] text-sm border-gray-600 text-gray-600 rounded-[4px] px-5 py-[6px] ;
+  }
+  
+  .drop-button {
+    @apply m-auto border-[1px] border-black text-sm rounded-[4px] px-5 py-[6px] hover:border-[2px] active:text-red-500 active:border-red-500;
+  }
 }

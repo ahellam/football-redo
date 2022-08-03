@@ -16,7 +16,7 @@ const Navigation = ({ user, setUser, setPositions}) => {
   }
 
   return (
-    <div className="bg-[#323236]  text-white px-6 py-4 grid grid-cols-12 sticky top-0 border-b-2 border-white">
+    <div className="bg-[#323236]  text-white px-6 py-4 grid grid-cols-12 sticky top-0 border-b-2 border-white z-50">
       <h1 className="my-auto font-extrabold text-2xl col-span-2">
         <span className="text-green-500">Fantasy</span>Draft
       </h1>
