@@ -10,7 +10,7 @@ const Recievers = ({ reciever, selectedWR, handleDraftWR, balance, preventZeroBa
       ></img>
       <div className="m-auto font-semibold text-center">
         <h4 className="text-green-500">{reciever.pos}</h4>
-        <h4 className="">{reciever.name}</h4>
+        <h4 className="w-max">{reciever.name}</h4>
         <h4 className="">${reciever.price}</h4>
         <h4 className="">Rank: {reciever.rank}</h4>
       </div>

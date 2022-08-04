@@ -10,7 +10,7 @@ const Quarterbacks = ({ quarterback, selectedQB, handleDraftQB, balance, prevent
       ></img>
       <div className="m-auto font-semibold text-center">
         <h4 className="text-green-500">{quarterback.pos}</h4>
-        <h4 className="">{quarterback.name}</h4>
+        <h4 className="w-max">{quarterback.name}</h4>
         <h4 className="">${quarterback.price}</h4>
         <h4 className="">Rank: {quarterback.rank}</h4>
       </div>

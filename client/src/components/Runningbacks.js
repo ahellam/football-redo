@@ -13,7 +13,7 @@ const Runningbacks = ({ runningback, selectedRB, handleDraftRB, balance, prevent
       ></img>
       <div className="m-auto font-semibold text-center">
         <h4 className="text-green-500">{runningback.pos}</h4>
-        <h4 className="">{runningback.name}</h4>
+        <h4 className="w-max">{runningback.name}</h4>
         <h4 className="">${runningback.price}</h4>
         <h4 className="">Rank: {runningback.rank}</h4>
       </div>

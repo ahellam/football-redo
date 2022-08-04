@@ -43,8 +43,6 @@ const Home = ({ positions }) => {
   }
                             // REFACTOR LOTS OF NOT DRY CODE HERE..........
 
-  
-  
   return (
   <div className="">
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
@@ -96,20 +94,20 @@ const Home = ({ positions }) => {
       </div>
     </div>
 
-    <div id="positions-containter" className="m-1 grid grid-flow-col justify-items-center">
-      <div id="qb-container" className="overflow-y-auto h-[39.5%]">
+    <div id="positions-containter" className="grid grid-flow-col justify-items-center z-30">
+      <div id="qb-container" className="overflow-y-auto h-[40%] z-20">
         {positions && positions.find(position => position.id === 1)
         .players.map(quarterback => (
           <Quarterbacks key={quarterback.id} quarterback={quarterback} balance={balance} selectedQB={selectedQB} handleDraftQB={handleDraftQB} preventZeroBalance={preventZeroBalance}/>
         ))}
       </div>
-      <div id="wr-container" className="overflow-y-auto h-[39.5%]">
+      <div id="wr-container" className="overflow-y-auto h-[40%]">
         {positions && positions.find(position => position.id === 2)
         .players.map(reciever => (
           <Recievers key={reciever.id} reciever={reciever} balance={balance} selectedWR={selectedWR} handleDraftWR={handleDraftWR} preventZeroBalance={preventZeroBalance}/>
         ))}
       </div>
-      <div id="rb-container" className="overflow-y-auto h-[39.5%]">
+      <div id="rb-container" className="overflow-y-auto h-[40%]">
         {positions && positions.find(position => position.id === 3)
         .players.map(runningback => (
           <Runningbacks key={runningback.id} runningback={runningback} balance={balance} selectedRB={selectedRB} handleDraftRB={handleDraftRB} preventZeroBalance={preventZeroBalance}/>

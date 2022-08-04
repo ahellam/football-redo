@@ -11,7 +11,6 @@
   .selected-player{
     @apply p-1 grid grid-cols-3 z-10 
     min-w-full
-     /* w-[26.5rem] */
   }
 
   .draft-button {
