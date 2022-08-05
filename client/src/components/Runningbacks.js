@@ -1,6 +1,6 @@
 import React from "react";
 
-const Runningbacks = ({ runningback, selectedRB, handleDraftRB, balance, preventZeroBalance }) => {
+const Runningbacks = ({ runningback, selectedRB, handleDraftPOS, balance, twoPositionsSelected }) => {
 
   
 
@@ -20,12 +20,11 @@ const Runningbacks = ({ runningback, selectedRB, handleDraftRB, balance, prevent
       <button
         className={
           selectedRB ||
-          runningback.price > balance || (!preventZeroBalance && runningback.price + 100 > balance)
-          // PUT LOGIC
+          runningback.price > balance || (!twoPositionsSelected && runningback.price + 100 > balance)
             ? "draft-button-inactive"
             : "draft-button"
         }
-        onClick={selectedRB ? null : () => handleDraftRB(runningback)}
+        onClick={selectedRB ? null : () => handleDraftPOS(runningback)}
       >
         Draft
       </button>

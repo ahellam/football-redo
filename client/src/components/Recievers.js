@@ -1,6 +1,6 @@
 import React from "react";
 
-const Recievers = ({ reciever, selectedWR, handleDraftWR, balance, preventZeroBalance }) => {
+const Recievers = ({ reciever, selectedWR, handleDraftPOS, balance, twoPositionsSelected }) => {
   return (
     <div className={selectedWR ? "player-card opacity-25" : "player-card"}>
       <img
@@ -17,12 +17,11 @@ const Recievers = ({ reciever, selectedWR, handleDraftWR, balance, preventZeroBa
       <button
         className={
           selectedWR ||
-          reciever.price > balance || (!preventZeroBalance && reciever.price + 100 > balance)
-          // PUT LOGIC
+          reciever.price > balance || (!twoPositionsSelected && reciever.price + 100 > balance)
             ? "draft-button-inactive"
             : "draft-button"
         }
-        onClick={selectedWR ? null : () => handleDraftWR(reciever)}
+        onClick={selectedWR ? null : () => handleDraftPOS(reciever)}
       >
         Draft
       </button>

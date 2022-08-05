@@ -9,44 +9,34 @@ const Home = ({ positions }) => {
   const [selectedWR, setSelectedWR] = useState(null)
   const [selectedRB, setSelectedRB] = useState(null)
 
-  const preventZeroBalance = ((selectedQB && selectedWR) || (selectedQB && selectedRB) || (selectedWR && selectedRB))
+  const twoPositionsSelected = ((selectedQB && selectedWR) || (selectedQB && selectedRB) || (selectedWR && selectedRB))
+  const allPositionsSelected = (selectedQB && selectedWR && selectedRB)
 
-                          // REFACTOR LOTS OF NOT DRY CODE HERE..........
-  const handleDraftQB = (qb) => {
-    setSelectedQB(qb)
-    setBalance(balance => balance - qb.price)
+  const handleDraftPOS = (player) => {
+    const position = player.pos
+    if (position === "QB") setSelectedQB(player)
+    if (position === "WR") setSelectedWR(player)
+    if (position === "RB") setSelectedRB(player)
+
+    setBalance(balance => balance - player.price)
   }
 
-  const handleDropQB = () => {
-    setSelectedQB(null)
-    setBalance(balance => balance + selectedQB.price)
+  const handleDropPOS = (player) => {
+    const position = player.pos
+    if (position === "QB") setSelectedQB(null)
+    if (position === "WR") setSelectedWR(null)
+    if (position === "RB") setSelectedRB(null)
+    
+    setBalance(balance => balance + player.price)
   }
-
-  const handleDraftWR = (wr) => {
-    setSelectedWR(wr)
-    setBalance(balance => balance - wr.price)
-  }
-
-  const handleDropWR = () => {
-    setSelectedWR(null)
-    setBalance(balance => balance + selectedWR.price)
-  }
-
-  const handleDraftRB = (rb) => {
-    setSelectedRB(rb)
-    setBalance(balance => balance - rb.price)
-  }
-
-  const handleDropRB = () => {
-    setSelectedRB(null)
-    setBalance(balance => balance + selectedRB.price)
-  }
-                            // REFACTOR LOTS OF NOT DRY CODE HERE..........
 
   return (
   <div className="">
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
       <p className=" my-1 font-bold">Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
+      {allPositionsSelected && <button className="hover:bg-green-500 hover:text-white text-lg font-bold border border-black rounded-md py-2 px-4">Draft This Team</button>}
+
+                              {/* -------COULD BE OWN COMPONENT vvvvvvvvv */}
 
       <div id="selected-players" className="grid grid-cols-3 justify-items-center">
         <div className="selected-player">
@@ -57,7 +47,7 @@ const Home = ({ positions }) => {
                 <h4 className="text-green-500">{selectedQB.pos}</h4>
                 <h4>{selectedQB.name}</h4>
               </div>
-              <button className="drop-button" onClick={handleDropQB}>Drop</button>
+              <button className="drop-button" onClick={() => handleDropPOS(selectedQB)}>Drop</button>
             </>
             : <p className=" text-xl col-start-2">Select QB</p> 
           }
@@ -71,7 +61,7 @@ const Home = ({ positions }) => {
                 <h4 className="text-green-500">{selectedWR.pos}</h4>
                 <h4>{selectedWR.name}</h4>
               </div>
-              <button className="drop-button" onClick={handleDropWR}>Drop</button>
+              <button className="drop-button" onClick={() => handleDropPOS(selectedWR)}>Drop</button>
             </>
             : <p className=" text-xl col-start-2">Select WR</p> 
           }
@@ -85,7 +75,7 @@ const Home = ({ positions }) => {
                 <h4 className="text-green-500">{selectedRB.pos}</h4>
                 <h4>{selectedRB.name}</h4>
               </div>
-              <button className="drop-button" onClick={handleDropRB}>Drop</button>
+              <button className="drop-button" onClick={() => handleDropPOS(selectedRB)}>Drop</button>
             </>
             : <p className=" text-xl col-start-2">Select RB</p> 
           }
@@ -93,24 +83,25 @@ const Home = ({ positions }) => {
 
       </div>
     </div>
+                              {/* -------COULD BE OWN COMPONENT ^^^^ */}
 
     <div id="positions-containter" className="grid grid-flow-col justify-items-center z-30">
       <div id="qb-container" className="overflow-y-auto h-[40%] z-20">
         {positions && positions.find(position => position.id === 1)
         .players.map(quarterback => (
-          <Quarterbacks key={quarterback.id} quarterback={quarterback} balance={balance} selectedQB={selectedQB} handleDraftQB={handleDraftQB} preventZeroBalance={preventZeroBalance}/>
+          <Quarterbacks key={quarterback.id} quarterback={quarterback} balance={balance} selectedQB={selectedQB} handleDraftPOS={handleDraftPOS} twoPositionsSelected={twoPositionsSelected}/>
         ))}
       </div>
       <div id="wr-container" className="overflow-y-auto h-[40%]">
         {positions && positions.find(position => position.id === 2)
         .players.map(reciever => (
-          <Recievers key={reciever.id} reciever={reciever} balance={balance} selectedWR={selectedWR} handleDraftWR={handleDraftWR} preventZeroBalance={preventZeroBalance}/>
+          <Recievers key={reciever.id} reciever={reciever} balance={balance} selectedWR={selectedWR} handleDraftPOS={handleDraftPOS} twoPositionsSelected={twoPositionsSelected}/>
         ))}
       </div>
       <div id="rb-container" className="overflow-y-auto h-[40%]">
         {positions && positions.find(position => position.id === 3)
         .players.map(runningback => (
-          <Runningbacks key={runningback.id} runningback={runningback} balance={balance} selectedRB={selectedRB} handleDraftRB={handleDraftRB} preventZeroBalance={preventZeroBalance}/>
+          <Runningbacks key={runningback.id} runningback={runningback} balance={balance} selectedRB={selectedRB} handleDraftPOS={handleDraftPOS} twoPositionsSelected={twoPositionsSelected}/>
         ))}
       </div>
     </div>

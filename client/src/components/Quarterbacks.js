@@ -1,6 +1,6 @@
 import React from "react";
 
-const Quarterbacks = ({ quarterback, selectedQB, handleDraftQB, balance, preventZeroBalance }) => {
+const Quarterbacks = ({ quarterback, selectedQB, handleDraftPOS, balance, twoPositionsSelected }) => {
   return (
     <div className={selectedQB ? "player-card opacity-25" : "player-card"}>
       <img
@@ -17,11 +17,11 @@ const Quarterbacks = ({ quarterback, selectedQB, handleDraftQB, balance, prevent
       <button
         className={
           selectedQB ||
-          quarterback.price > balance || (!preventZeroBalance && quarterback.price + 100 > balance)
+          quarterback.price > balance || (!twoPositionsSelected && quarterback.price + 100 > balance)
             ? "draft-button-inactive"
             : "draft-button"
         }
-        onClick={selectedQB ? null : () => handleDraftQB(quarterback)}
+        onClick={selectedQB ? null : () => handleDraftPOS(quarterback)}
       >
         Draft
       </button>
