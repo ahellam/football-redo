@@ -4,7 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import Navigation from "./Navigation";
-
+                                                // TRY USE CONTEXT FOR USER---------------------
 function App() {
   const baseUrl = "http://localhost:3000"
   const profileUrl = `${baseUrl}/profile`;
