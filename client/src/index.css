@@ -4,8 +4,12 @@
 
 @layer components {
 
+  .position-container {
+    @apply overflow-y-auto h-[40%] overscroll-contain snap-mandatory snap-y scroll-py-[2px];
+  }
+
   .player-card {
-    @apply m-1 p-1 rounded-md bg-[#323236] text-white grid grid-cols-3 z-0;
+    @apply m-1 p-1 rounded-md bg-[#323236] text-white grid grid-cols-3 snap-start z-0;
   }
 
   .selected-player{
@@ -18,7 +22,7 @@
   }
   
   .draft-button-inactive {
-    @apply m-auto border-[1px] text-sm border-gray-600 text-gray-600 rounded-[4px] px-5 py-[6px] ;
+    @apply m-auto border-[1px] text-sm border-gray-600 text-gray-600 rounded-[4px] px-5 py-[6px];
   }
   
   .drop-button {

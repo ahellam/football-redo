@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
       secret = 'sgs'
       begin
         decoded_token = JWT.decode(token, secret).first
-        # use .first because its [0] because its an array with two objects, the {user_id} and the encryp {algo 256}
+        #  use .first because its [0] because its an array with two objects, the {user_id} and the encryp {algo 256}
         user_id = decoded_token['user_id']
         @user = User.find user_id
       rescue 
