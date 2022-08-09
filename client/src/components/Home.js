@@ -10,7 +10,7 @@ const Home = ({ positions, user }) => {
   const [selectedQB, setSelectedQB] = useState(null)
   const [selectedWR, setSelectedWR] = useState(null)
   const [selectedRB, setSelectedRB] = useState(null)
-  const teamsURL = "http://localhost:3000/teams"
+  const draftURL = "http://localhost:3000/draft"
   const twoPositionsSelected = ((selectedQB && selectedWR) || (selectedQB && selectedRB) || (selectedWR && selectedRB))
   const allPositionsSelected = (selectedQB && selectedWR && selectedRB)
 
@@ -38,26 +38,35 @@ const Home = ({ positions, user }) => {
       user_id: user.id,
       name: teamName,
       playersOnTeam: [
-        selectedQB,
-        selectedWR,
-        selectedRB
+        selectedQB.id,
+        selectedWR.id,
+        selectedRB.id
       ]
     }
-    console.log(teamData)
-    // fetch(teamsURL, {
-    //   method: "POST",
-    //   headers: { 
-    //     "Content-Type": "application/json" ,
-    //     "Authorization": `Bearer ${localStorage.token}`
-    // },
-    //   body: JSON.stringify(teamData)
-    // })
-    // .then(res => res.json())
-    // .then(console.log)
+    // console.log(teamData)
+    fetch(draftURL, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json" ,
+        "Authorization": `Bearer ${localStorage.token}`
+    },
+      body: JSON.stringify(teamData)
+    })
+    .then(res => res.json())
+    .then(console.log)
+    .then(() => {
+      setTeamName("")
+      setSelectedQB(null)
+      setSelectedWR(null)
+      setSelectedRB(null)
+      setBalance(1700)
+    })
   }
 
   return (
   <div className="">
+    
+                        {/* MAKE THIS A COMPONENT vvvvv */}
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
       <p className=" my-1 font-bold">Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
       {allPositionsSelected && <form onSubmit={draftSelectedTeam}>
@@ -74,6 +83,8 @@ const Home = ({ positions, user }) => {
           >Draft This Team
           </button>}
         </form>}
+                          {/* MAKE THIS A COMPONENT ^^^^^ */}
+
       <SelectedPlayers selectedQB={selectedQB} selectedWR={selectedWR} selectedRB={selectedRB} handleDropPOS={handleDropPOS}/>
     </div>
 

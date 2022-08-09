@@ -1,16 +1,19 @@
 class TeamsController < ApplicationController
-
+  
+  # skip_before_action :authorize
+  # before_action :set_user
+  
   def index 
-    render json: Team.all, status: :ok 
+    render json: @user.teams, status: :ok 
   end
 
   def show
-    team = Team.find!(params[:id])
+    team = Team.find(params[:id])
     render json: team, status: :ok
   end
 
   def create
-    team = Team.create!(team_params)
+    team = @user.teams.create(name: params[:name])
     render json: team, status: :created
   end
 
@@ -20,18 +23,29 @@ class TeamsController < ApplicationController
     head :no_content
   end
 
-  private 
+  def draft 
 
-  def team_params
-    params.permit(:user_id)
+    # create a team
+    team = @user.teams.create!(
+      # user_id: params[:user_id],
+      name: params[:name]
+  ) 
+
+    # create three TeamPlayer records associated with the team and each player on the drafted team
+    team.team_players.create([
+      {player_id: params.dig('playersOnTeam')[0]}, 
+      {player_id: params.dig('playersOnTeam')[1]},
+      {player_id: params.dig('playersOnTeam')[2]}
+    ]
+  )
+
+    render json: team, include: ['players', 'players.games'], status: :created
   end
 
-  # def team_params
-  #   params.permit(:user_id, { players: 
-  #     [:canDelete, :id, :image, :name, :pos, :position_id, :price, :rank, 
-  #       { games: [:id, :player_id, :week, :points] }
-  #     ]
-  #     })
-  # end
+  private 
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
 end
