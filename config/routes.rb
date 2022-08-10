@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#profile'
   post '/login', to: 'authentication#login'
   post '/draft', to: 'teams#draft'
+  get '/opponents', to: 'teams#opponents'
 
 end

@@ -1,15 +1,17 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import Quarterbacks from "./Quarterbacks"
 import Recievers from "./Recievers"
 import Runningbacks from "./Runningbacks"
-import React, { useState } from "react";
 import SelectedPlayers from "./SelectedPlayers";
 
-const Home = ({ positions, user }) => {
+const Home = ({ positions, user, myTeams, setMyTeams }) => {
   const [balance, setBalance] = useState(1700)
   const [teamName, setTeamName] = useState("")
   const [selectedQB, setSelectedQB] = useState(null)
   const [selectedWR, setSelectedWR] = useState(null)
   const [selectedRB, setSelectedRB] = useState(null)
+  let navigate = useNavigate();
   const draftURL = "http://localhost:3000/draft"
   const twoPositionsSelected = ((selectedQB && selectedWR) || (selectedQB && selectedRB) || (selectedWR && selectedRB))
   const allPositionsSelected = (selectedQB && selectedWR && selectedRB)
@@ -53,7 +55,8 @@ const Home = ({ positions, user }) => {
       body: JSON.stringify(teamData)
     })
     .then(res => res.json())
-    .then(console.log)
+    .then((newTeam) => setMyTeams([...myTeams, newTeam]))
+    .then(() => {navigate('/teams')})
     .then(() => {
       setTeamName("")
       setSelectedQB(null)
@@ -65,7 +68,7 @@ const Home = ({ positions, user }) => {
 
   return (
   <div className="">
-    
+
                         {/* MAKE THIS A COMPONENT vvvvv */}
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
       <p className=" my-1 font-bold">Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
