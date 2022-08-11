@@ -86,12 +86,12 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
           >Draft This Team
           </button>}
         </form>}
-                          {/* MAKE THIS A COMPONENT ^^^^^ */}
 
       <SelectedPlayers selectedQB={selectedQB} selectedWR={selectedWR} selectedRB={selectedRB} handleDropPOS={handleDropPOS}/>
     </div>
+                          {/* MAKE THIS A COMPONENT ^^^^^ */}
 
-    <div id="positions-all-containter" className="grid grid-flow-col justify-items-center z-30">
+    <div id="positions-all-containter" className="grid grid-flow-col z-30">
       <div id="qb-container" className="position-container">
         {positions && positions.find(position => position.id === 1)
         .players.map(quarterback => (

@@ -70,7 +70,7 @@ function App() {
             element={<Login user={user} setUser={setUser} />}
           />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/teams" element={<Teams myTeams={myTeams} opponents={opponents}/>} />
+          <Route path="/teams" element={<Teams user={user} myTeams={myTeams} opponents={opponents}/>} />
         </Routes>
       </Router>
     </div>

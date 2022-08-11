@@ -8,6 +8,14 @@
     @apply overflow-y-auto h-[40%] overscroll-contain snap-mandatory snap-y scroll-py-[2px];
   }
 
+  .team-container {
+    @apply overflow-y-auto h-[418px] overscroll-contain snap-mandatory snap-y  scroll-py-[2px]
+  }
+
+  .team-card {
+    @apply m-1 p-1 rounded-md bg-[#323236] text-white snap-start z-0;
+  }
+
   .player-card {
     @apply m-1 p-1 rounded-md bg-[#323236] text-white grid grid-cols-3 snap-start z-0;
   }
@@ -26,6 +34,22 @@
   }
   
   .drop-button {
-    @apply m-auto border-[1px] border-black text-sm rounded-[4px] px-5 py-[6px] hover:border-[2px] active:text-red-500 active:border-red-500;
+    @apply m-auto border-[1px] border-black text-sm rounded-[4px] px-5 py-[6px] hover:border-red-500 hover:text-red-500 active:bg-red-500 active:text-white;
+  }
+
+  .team-select-button {
+    @apply m-auto my-1 border-[1px] border-white text-sm rounded-[4px] px-5 py-[1px] hover:border-green-500 active:text-green-500
+  }
+
+  .team-inactive-button {
+    @apply m-auto my-1 border-[1px] border-gray-600 text-gray-600 text-sm rounded-[4px] px-5 py-[1px]
+  }
+
+  .team-delete-button {
+    @apply m-auto my-1 border-[1px] border-white text-sm rounded-[4px] px-5 py-[1px] hover:border-red-500 active:text-red-500
+  }
+  
+  .team-drop-button {
+    @apply m-auto my-1 border-[1px] border-black text-sm rounded-[4px] px-5 py-[1px] hover:border-red-500 active:text-red-500
   }
 }

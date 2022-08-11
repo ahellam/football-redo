@@ -1,28 +1,57 @@
-import React from "react";
+import {useState} from "react";
 import UsersTeams from "./UsersTeams";
 import OpponentTeams from "./OpponentTeams";
+import SelectedTeams from "./SelectedTeams";
 
-const Teams = ({ myTeams, opponents }) => {
-  // console.log(teams)
+const Teams = ({ user, myTeams, opponents }) => {
+  const [selectedUserTeam, setSelectedUserTeam] = useState(null)
+  const [selectedOpponentTeam, setSelectedOpponentTeam] = useState(null) 
+  const twoTeamsSelected = selectedUserTeam && selectedOpponentTeam
+
+  const handleSelectTeam = (team) => {
+    team.user_id === user.id ? setSelectedUserTeam(team) : setSelectedOpponentTeam(team)
+  }
+
+  const handleDropTeams = () => {
+    setSelectedUserTeam(null)
+    setSelectedOpponentTeam(null)
+  }
+
   return (
-    <div className="grid grid-cols-2 grid-flow-col ">
-      {myTeams && (
-        <div className="grid grid-flow-row">
-          <h1 className="text-xl font-bold text-center">My Teams</h1>
-          {myTeams.map((myTeam) => (
-            <UsersTeams key={myTeam.id} myTeam={myTeam} />
-          ))}
+    <div>
+      <div className="my-2 p-1 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
+        <div>
+          {twoTeamsSelected && 
+            <button 
+              className="drop-button"
+              onClick={handleDropTeams}
+              >Clear Teams
+            </button>
+          }
         </div>
-      )}
-
-      {opponents && (
-        <div className="grid grid-flow-row">
-        <h1 className="text-xl font-bold text-center">Opponent Teams</h1>
-        {opponents.map((opponent) => (
-          <OpponentTeams key={opponent.id} opponent={opponent} />
-        ))}
+        <div id="selected-team-container" className="">
+          <SelectedTeams selectedUserTeam={selectedUserTeam} selectedOpponentTeam={selectedOpponentTeam}/>
+        </div>
       </div>
-      )}
+
+      <div className="grid grid-cols-2 grid-flow-col">
+        {myTeams && (
+          <div className="team-container">
+            
+            {myTeams.map((myTeam) => (
+              <UsersTeams key={myTeam.id} myTeam={myTeam} selectedUserTeam={selectedUserTeam} handleSelectTeam={handleSelectTeam}/>
+            ))}
+          </div>
+        )}
+        {opponents && (
+          <div className="team-container">
+            
+            {opponents.map((opponent) => (
+              <OpponentTeams key={opponent.id} opponent={opponent} selectedOpponentTeam={selectedOpponentTeam} handleSelectTeam={handleSelectTeam}/>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
