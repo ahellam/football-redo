@@ -42,6 +42,18 @@ function App() {
     opponentsRes = await opponentsRes.json()    
     if (opponentsRes[0].id) setOpponents(opponentsRes)
   }
+
+  const handleDeleteTeam = (team) => {
+    fetch(`${teamsURL}/${team.id}`, {
+      method: "DELETE", 
+      headers : {"Authorization": `Bearer ${localStorage.token}`}
+    })
+    .then(
+      team.user_id === user.id
+        ? setMyTeams(myTeams.filter((myTeam) => myTeam.id !== team.id))
+        : setOpponents(opponents.filter((opponent) => opponent.id !== team.id))
+      )
+  }
   
   useEffect(() => {
     if (localStorage.token) fetchProfile()
@@ -70,7 +82,7 @@ function App() {
             element={<Login user={user} setUser={setUser} />}
           />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/teams" element={<Teams user={user} myTeams={myTeams} opponents={opponents}/>} />
+          <Route path="/teams" element={<Teams user={user} myTeams={myTeams} opponents={opponents} handleDeleteTeam={handleDeleteTeam}/>} />
         </Routes>
       </Router>
     </div>

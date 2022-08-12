@@ -3,7 +3,7 @@ import UsersTeams from "./UsersTeams";
 import OpponentTeams from "./OpponentTeams";
 import SelectedTeams from "./SelectedTeams";
 
-const Teams = ({ user, myTeams, opponents }) => {
+const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
   const [selectedUserTeam, setSelectedUserTeam] = useState(null)
   const [selectedOpponentTeam, setSelectedOpponentTeam] = useState(null) 
   const twoTeamsSelected = selectedUserTeam && selectedOpponentTeam
@@ -39,7 +39,7 @@ const Teams = ({ user, myTeams, opponents }) => {
           <div className="team-container">
             
             {myTeams.map((myTeam) => (
-              <UsersTeams key={myTeam.id} myTeam={myTeam} selectedUserTeam={selectedUserTeam} handleSelectTeam={handleSelectTeam}/>
+              <UsersTeams key={myTeam.id} myTeam={myTeam} selectedUserTeam={selectedUserTeam} handleSelectTeam={handleSelectTeam} handleDeleteTeam={handleDeleteTeam}/>
             ))}
           </div>
         )}
@@ -47,7 +47,7 @@ const Teams = ({ user, myTeams, opponents }) => {
           <div className="team-container">
             
             {opponents.map((opponent) => (
-              <OpponentTeams key={opponent.id} opponent={opponent} selectedOpponentTeam={selectedOpponentTeam} handleSelectTeam={handleSelectTeam}/>
+              <OpponentTeams key={opponent.id} opponent={opponent} selectedOpponentTeam={selectedOpponentTeam} handleSelectTeam={handleSelectTeam} handleDeleteTeam={handleDeleteTeam}/>
             ))}
           </div>
         )}

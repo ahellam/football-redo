@@ -1,7 +1,7 @@
 import React from "react";
 import OpponentTeamPlayers from "./OpponentTeamPlayers";
 
-const OpponentTeams = ({ opponent, handleSelectTeam, selectedOpponentTeam }) => {
+const OpponentTeams = ({ opponent, handleSelectTeam, selectedOpponentTeam, handleDeleteTeam }) => {
   return (
     <div className={selectedOpponentTeam ? "team-card opacity-25" : "team-card"}>
       <div className="grid grid-cols-3">
@@ -14,8 +14,13 @@ const OpponentTeams = ({ opponent, handleSelectTeam, selectedOpponentTeam }) => 
         <h1 className="text-center text-lg font-semibold m-auto">
           {opponent.name}
         </h1>
-        <button className={selectedOpponentTeam ? "team-inactive-button" : "team-delete-button"}>Delete</button>
-        {/* NEED TO HOOK UP DELETE BUTTON TO DELETE TEAM */}
+        <button 
+          className={selectedOpponentTeam ? "team-inactive-button" : "team-delete-button"}
+          onClick={() => handleDeleteTeam(opponent)}
+        >
+          Delete
+        </button>
+
       </div>
       <div className="grid grid-cols-3 grid-flow-row gap-1">
         {opponent.players.map((opponentPlayer) => (
