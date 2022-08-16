@@ -51,3 +51,7 @@ class TeamsController < ApplicationController
   # end
 
 end
+
+# find all teams that have the player "Tom Brady"
+# bradys_teams = Team.joins(:players).where(players: {name: 'Tom Brady'})
+# bradys_teams.count 

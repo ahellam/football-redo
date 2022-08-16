@@ -69,7 +69,6 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
   return (
   <div className="">
 
-                        {/* MAKE THIS A COMPONENT vvvvv */}
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
       <p className=" my-1 font-bold">Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
       {allPositionsSelected && <form onSubmit={draftSelectedTeam}>
@@ -89,7 +88,6 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
 
       <SelectedPlayers selectedQB={selectedQB} selectedWR={selectedWR} selectedRB={selectedRB} handleDropPOS={handleDropPOS}/>
     </div>
-                          {/* MAKE THIS A COMPONENT ^^^^^ */}
 
     <div id="positions-all-containter" className="grid grid-flow-col z-30">
       <div id="qb-container" className="position-container">
@@ -109,6 +107,7 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
         .players.map(runningback => (
           <Runningbacks key={runningback.id} runningback={runningback} balance={balance} selectedRB={selectedRB} handleDraftPOS={handleDraftPOS} twoPositionsSelected={twoPositionsSelected}/>
         ))}
+        
       </div>
     </div>
   </div>
