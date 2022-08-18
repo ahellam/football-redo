@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import UsersTeams from "./UsersTeams";
 import OpponentTeams from "./OpponentTeams";
 import SelectedTeams from "./SelectedTeams";
@@ -12,7 +12,8 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
   const [opponentsGamesThatWeek, setOpponentsGamesThatWeek] = useState(null)
   const [usersSeasonGamesByWeek, setUsersSeasonGamesByWeek] = useState(null)
   const [opponentsSeasonGamesByWeek, setOpponentsSeasonGamesByWeek] = useState(null)
-  // const [playingSeason, setPlayingSeason] = useState(false)
+  const [userTotalWins, setUserTotalWins] = useState(null)
+  const [opponentTotalWins, setOpponentTotalWins] = useState(null)
   const twoTeamsSelected = selectedUserTeam && selectedOpponentTeam
 
   const handleSelectTeam = (team) => {
@@ -24,6 +25,8 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
     setSelectedOpponentTeam(null)
     setUsersGamesThatWeek(null)
     setOpponentsGamesThatWeek(null)
+    setUsersSeasonGamesByWeek(null)
+    setOpponentsSeasonGamesByWeek(null)
   }
 
   const handleClearGameData = () => {
@@ -32,21 +35,27 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
   }
 
   const handleClearSeasonData = () => {
-    // setPlayingSeason(false)
     setUsersSeasonGamesByWeek(null)
     setOpponentsSeasonGamesByWeek(null)
   }
 
   const handlePlayRandomGame = () => {
+    setUsersSeasonGamesByWeek(null)
+    setOpponentsSeasonGamesByWeek(null)
     const randomWeek = Math.floor(Math.random() * 18) + 1
     setUsersGamesThatWeek(selectedUserTeam.players.map(player => player.games.find(game => game.week === randomWeek)))
     setOpponentsGamesThatWeek(selectedOpponentTeam.players.map(player => player.games.find(game => game.week === randomWeek)))
   }
 
   const handlePlaySeason = () => {
-    // setPlayingSeason(true)
+    setUsersGamesThatWeek(null)
+    setOpponentsGamesThatWeek(null)
+
     const userWeekGames = []
     const opponentsWeekGames = []
+    let userWins = 0
+    let opponentWins = 0 
+
   
     for (let week = 1; week <= 18; week++) {
       const usersGamesThatWeek = selectedUserTeam.players.map(player => player.games.find(game => game.week === week))
@@ -54,33 +63,18 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
       const opponentsGamesThatWeek = selectedOpponentTeam.players.map(player => player.games.find(game => game.week === week))
         opponentsWeekGames.push(opponentsGamesThatWeek)
       
+      const usersTotalPointsThatWeek = Math.round(10 * (usersGamesThatWeek.reduce((prev, curr) => prev + curr.points, 0))) / 10
+      const opponentsTotalPointsThatWeek = Math.round(10 * (opponentsGamesThatWeek.reduce((prev, curr) => prev + curr.points, 0))) / 10
+
+      usersTotalPointsThatWeek > opponentsTotalPointsThatWeek ? userWins += 1 : opponentWins += 1
     }
     if (userWeekGames.length > 0) setUsersSeasonGamesByWeek(userWeekGames)
     if (opponentsWeekGames.length > 0) setOpponentsSeasonGamesByWeek(opponentsWeekGames)
+    if (userWins > 0 || opponentWins > 0) {
+      setUserTotalWins(userWins)
+      setOpponentTotalWins(opponentWins)
+    }
 
-
-    // console.log(selectedUserTeam.players.map(player => player.games))
-    // let userWins = 0
-    // let opponentWins = 0
-    // const arrayOfUserTeamPlayersPoints = selectedUserTeam.players.map(player => player.games.map(game => game.points).reduce((prev, curr) => prev + curr, 0))
-    // const arrayOfOpponentTeamPlayersPoints = selectedOpponentTeam.players.map(player => player.games.map(game => game.points).reduce((prev, curr) => prev + curr, 0))
-
-    // for (let week = 1; week <= 18; week++) {
-    //   const usersGamesThatWeek = selectedUserTeam.players.map(player => player.games.find(game => game.week === week))
-    //   const opponentsGamesThatWeek = selectedOpponentTeam.players.map(player => player.games.find(game => game.week === week))
-    //   const usersTotalPointsThatWeek = Math.round(10 * (usersGamesThatWeek.reduce((prev, curr) => prev + curr.points, 0))) / 10
-    //   const opponentsTotalPointsThatWeek = Math.round(10 * (opponentsGamesThatWeek.reduce((prev, curr) => prev + curr.points, 0))) / 10
-
-    //   const whoWonText = usersTotalPointsThatWeek > opponentsTotalPointsThatWeek ? 'YOU WIN' : 'OPPONENT WINS'
-
-    //   usersTotalPointsThatWeek > opponentsTotalPointsThatWeek ? userWins += 1 : opponentWins += 1
-
-    //   console.log(`week:`, week, whoWonText, `-- Your teams pts:`, usersTotalPointsThatWeek, `-- Opponents teams pts:`, opponentsTotalPointsThatWeek)
-    // }
-
-    // console.log(`YOUR TEAM TOTAL PTS:`, arrayOfUserTeamPlayersPoints.reduce((prev, curr) => prev + curr, 0), `YOUR TEAM TOTAL WINS:`, userWins)
-    // console.log(`OPPONENET TEAM TOTAL PTS:`, arrayOfOpponentTeamPlayersPoints.reduce((prev, curr) => prev + curr, 0), `OPPONENT TEAM TOTAL WINS:`, opponentWins)
-    // userWins > opponentWins ? console.log('YOU WIN!') : console.log('OPPONENT WINS!')
   }
 
   return (
@@ -124,9 +118,10 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
         <div id="season-games-container" className="px-2">
           <SeasonGamesInfo 
             handleClearSeasonData={handleClearSeasonData}
-            // playingSeason={playingSeason}
             usersSeasonGamesByWeek={usersSeasonGamesByWeek}
             opponentsSeasonGamesByWeek={opponentsSeasonGamesByWeek}
+            userTotalWins={userTotalWins}
+            opponentTotalWins={opponentTotalWins}
           />
         </div>}
       </div>
