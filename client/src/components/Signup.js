@@ -68,7 +68,7 @@ const SignUp = () => {
             Already a player?
           </p>
           <div className="mt-4">
-          <button className="font-bold text-lg text-green-500 hover:text-green-600" 
+          <button id="link-to-login" className="font-bold text-lg text-green-500 hover:text-green-600" 
           type="button"
           onClick={linkToLogin}>
               Log in
