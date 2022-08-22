@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 
-const Navigation = ({ user, setUser, setPositions}) => {
+const Navigation = ({ user, setUser, setPositions, myTeams, opponents}) => {
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Navigation = ({ user, setUser, setPositions}) => {
           ? "m-auto col-start-6 font-semibold hover:font-bold text-green-500"
           : "m-auto col-start-6 font-semibold hover:font-bold active:text-green-500"
       ]}>Home</NavLink>}
-      { user && <NavLink to="/teams" className={({isActive}) => [
+      { user && myTeams && opponents && <NavLink to="/teams" className={({isActive}) => [
         isActive
           ? "m-auto col-start-7 font-semibold hover:font-bold text-green-500"
           : "m-auto col-start-7 font-semibold hover:font-bold active:text-green-500"

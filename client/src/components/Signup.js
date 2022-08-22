@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const signUpUrl = "http://localhost:3000/users"
 
   let navigate = useNavigate()
@@ -19,14 +20,27 @@ const SignUp = () => {
       password: password,
     };
 
-    fetch(signUpUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(signUpData)
-    })
-    .then(res => res.json())
-    .then(setUsername(""), setPassword(""))
-    .then(linkToLogin())
+    if (username && password) {
+      fetch(signUpUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signUpData)
+      })
+      .then(res => res.json())
+      .then(json => {
+        if (json.errors) {
+          setError(json.errors[0])
+          setUsername("")
+          setPassword("")
+        }
+        else if (json.id) {
+          alert("User created successfully!")
+          linkToLogin()
+        }
+      })
+
+    }
+    else setError("Please enter a username and password")
   };
 
 
@@ -38,7 +52,10 @@ const SignUp = () => {
         </h1>
         <div className="mb-4">
           <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+            className={
+              error ? "border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+              : "border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+            }
             id="username"
             type="text"
             placeholder="Username"
@@ -48,7 +65,10 @@ const SignUp = () => {
         </div>
         <div className="mb-4">
           <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
+            className={
+              error ? "border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+              : "border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
+            }
             id="password"
             type="password"
             placeholder="Password"
@@ -56,8 +76,10 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {error && <p className="text-red-500 text-center text-lg font-bold mb-4">{error}</p>}
         <div className="items-center text-center justify-between">
           <button
+            id="sign-up-submit"
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             onClick={handleSignUp}

@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     render json: User.all, status: :ok
   end
 
+  def show 
+    user = User.find(params[:id])
+    render json: user, status: :ok
+  end
+
   def profile 
     # this @user is from the application controller in the JWT decode process
     render json: @user, status: :ok

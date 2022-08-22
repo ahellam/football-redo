@@ -66,7 +66,7 @@ function App() {
   return (
     <div className="">
       <Router>
-        <Navigation user={user} setUser={setUser} setPositions={setPositions}/>
+        <Navigation user={user} setUser={setUser} setPositions={setPositions} myTeams={myTeams} opponents={opponents}/>
         <Routes>
           <Route path="/"
             element={

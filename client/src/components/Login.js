@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 const Login = ({ user, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null)
   
   const loginUrl = "http://localhost:3000/login"
 
@@ -23,8 +24,9 @@ const Login = ({ user, setUser }) => {
     })
     .then(res => res.json())
     .then(result => {
-      if(result.error){
-        console.error(result.error)
+      if(!result.token){
+        setError("Invalid username or password.")
+        console.error(result)
       }
       else if(result.token) {
         localStorage.setItem("token", result.token)
@@ -65,6 +67,7 @@ const Login = ({ user, setUser }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {error && <p className="text-red-500 text-center text-lg font-bold mb-4">{error}</p>}
         <div className="items-center text-center justify-between">
           <button
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
