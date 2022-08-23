@@ -49,7 +49,11 @@ const Login = ({ user, setUser }) => {
         </h1>
         <div className="mb-4">
           <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+            className={
+              error
+              ? "border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+              : "border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+            }
             id="username"
             type="text"
             placeholder="Username"
@@ -59,7 +63,11 @@ const Login = ({ user, setUser }) => {
         </div>
         <div className="mb-4">
           <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
+            className={
+              error 
+              ? "border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black " 
+              : "border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black mb-3"
+            }
             id="password"
             type="password"
             placeholder="Password"
@@ -70,6 +78,7 @@ const Login = ({ user, setUser }) => {
         {error && <p className="text-red-500 text-center text-lg font-bold mb-4">{error}</p>}
         <div className="items-center text-center justify-between">
           <button
+            id="log-in-button"
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             onClick={handleLogin}
@@ -80,7 +89,9 @@ const Login = ({ user, setUser }) => {
             Don't have an account?
           </p>
           <div className="mt-4">
-            <button className="font-bold text-lg text-green-500 hover:text-green-600" 
+            <button 
+            id="link-to-signup"
+            className="font-bold text-lg text-green-500 hover:text-green-600" 
             type="button"
             onClick={linkToSignup}>
               Sign up

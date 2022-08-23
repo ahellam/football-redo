@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import UserTeamPlayers from "./UserTeamPlayers";
 
-const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTeam }) => {
-  // console.log(myTeam)
+const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTeam, handleDeleteLastTeam }) => {
+
+  const navigate = useNavigate()
+
+  const handleLastTeam = (myTeam) => {
+    navigate('/')
+    handleDeleteLastTeam(myTeam)
+  }
+
   return (
     <div className={selectedUserTeam ? "team-card opacity-25" : "team-card"}>
       <div className="grid grid-cols-3">
@@ -17,7 +25,10 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
         </h1>
         <button 
           className={selectedUserTeam ?  "team-inactive-button" : "team-delete-button"}
-          onClick={() => handleDeleteTeam(myTeam)}
+          onClick={myTeam.length > 1 
+            ? () => handleDeleteTeam(myTeam)
+            : () => handleLastTeam(myTeam)
+          }
         >
           Delete
         </button>

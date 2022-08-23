@@ -19,6 +19,8 @@ function App() {
   const [myTeams, setMyTeams] = useState(null);
   const [opponents, setOpponents] = useState(null);
 
+
+
   const fetchProfile = async () => {
     let profileRes = await fetch(profileUrl, authHeaders)
       profileRes = await profileRes.json()
@@ -34,13 +36,14 @@ function App() {
   const fetchMyTeams = async () => {
     let teamsRes = await fetch(teamsURL, authHeaders)
     teamsRes = await teamsRes.json()    
-    if (teamsRes[0].id) setMyTeams(teamsRes)
+    // console.log(teamsRes.length)
+    if (teamsRes.length > 0) setMyTeams(teamsRes)
   }
 
   const fetchOpponents = async () => {
     let opponentsRes = await fetch(opponentsURL, authHeaders)
     opponentsRes = await opponentsRes.json()    
-    if (opponentsRes[0].id) setOpponents(opponentsRes)
+    if (opponentsRes.length > 0) setOpponents(opponentsRes)
   }
 
   const handleDeleteTeam = (team) => {
@@ -52,6 +55,17 @@ function App() {
       team.user_id === user.id
         ? setMyTeams(myTeams.filter((myTeam) => myTeam.id !== team.id))
         : setOpponents(opponents.filter((opponent) => opponent.id !== team.id))
+      )
+  }
+  const handleDeleteLastTeam = (team) => {
+    fetch(`${teamsURL}/${team.id}`, {
+      method: "DELETE", 
+      headers : {"Authorization": `Bearer ${localStorage.token}`}
+    })
+    .then(
+      team.user_id === user.id
+        ? setMyTeams(null)
+        : setOpponents(null)
       )
   }
   
@@ -82,7 +96,7 @@ function App() {
             element={<Login user={user} setUser={setUser} />}
           />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/teams" element={<Teams user={user} myTeams={myTeams} opponents={opponents} handleDeleteTeam={handleDeleteTeam}/>} />
+          <Route path="/teams" element={<Teams user={user} myTeams={myTeams} setMyTeams={setMyTeams} opponents={opponents} handleDeleteTeam={handleDeleteTeam} handleDeleteLastTeam={handleDeleteLastTeam}/>} />
         </Routes>
       </Router>
     </div>

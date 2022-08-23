@@ -14,13 +14,16 @@ const OpponentTeams = ({ opponent, handleSelectTeam, selectedOpponentTeam, handl
         <h1 className="text-center text-lg font-semibold m-auto">
           {opponent.name}
         </h1>
-        <button 
+
+                                          {/* DONT THINK I WANT USER TO BE ABLE TO DELETE OPPONENTS TEAMS */}
+        {/* <button 
           className={selectedOpponentTeam ? "team-inactive-button" : "team-delete-button"}
           onClick={() => handleDeleteTeam(opponent)}
         >
           Delete
-        </button>
-
+        </button> */}
+                                          {/* ----------------------------------------------------------- */}
+                                          
       </div>
       <div className="grid grid-cols-3 grid-flow-row gap-1">
         {opponent.players.map((opponentPlayer) => (

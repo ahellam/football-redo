@@ -45,6 +45,18 @@ RSpec.describe "User Registration", type: :system do
     expect(page).to have_content("Log in to start drafting")
   end
 
+  it "signs up with a username that is taken" do 
+    visit("http://localhost:4000/signup")
+    within("#sign-up") do 
+      fill_in "username", with: "Anything"
+      fill_in "password", with: "Anything"
+    end
+    sleep 1
+    find("[id=sign-up-submit]").click
+    sleep 1
+    expect(page).to have_content("Username has already been taken")
+  end
+
   it "does not sign up with username and password" do 
     visit("http://localhost:4000/signup")
     within("#sign-up") do 
@@ -57,15 +69,4 @@ RSpec.describe "User Registration", type: :system do
     expect(page).to have_content("Please enter a username and password")
   end
 
-  it "signs up with a username that is taken" do 
-    visit("http://localhost:4000/signup")
-    within("#sign-up") do 
-      fill_in "username", with: "Anything"
-      fill_in "password", with: "Anything"
-    end
-    sleep 1
-    find("[id=sign-up-submit]").click
-    sleep 1
-    expect(page).to have_content("Username has already been taken")
-  end
 end

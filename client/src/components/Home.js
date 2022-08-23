@@ -55,7 +55,11 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
       body: JSON.stringify(teamData)
     })
     .then(res => res.json())
-    .then((newTeam) => setMyTeams([...myTeams, newTeam]))
+    .then(
+      myTeams
+      ? (newTeam) => setMyTeams([...myTeams, newTeam])
+      : (newTeam) => setMyTeams([newTeam])
+    )
     .then(() => {navigate('/teams')})
     .then(() => {
       setTeamName("")

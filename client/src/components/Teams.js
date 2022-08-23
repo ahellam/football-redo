@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UsersTeams from "./UsersTeams";
 import OpponentTeams from "./OpponentTeams";
 import SelectedTeams from "./SelectedTeams";
 import RandomGameInfo from "./RandomGameInfo";
 import SeasonGamesInfo from "./SeasonGamesInfo";
 
-const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
+
+const Teams = ({ user, myTeams, setMyTeams, opponents, handleDeleteTeam, handleDeleteLastTeam, emptyTeams }) => {
   const [selectedUserTeam, setSelectedUserTeam] = useState(null)
   const [selectedOpponentTeam, setSelectedOpponentTeam] = useState(null) 
   const [usersGamesThatWeek, setUsersGamesThatWeek] = useState(null)
@@ -15,6 +17,9 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
   const [userTotalWins, setUserTotalWins] = useState(null)
   const [opponentTotalWins, setOpponentTotalWins] = useState(null)
   const twoTeamsSelected = selectedUserTeam && selectedOpponentTeam
+
+  const navigate = useNavigate();
+  emptyTeams && navigate("/")
 
   const handleSelectTeam = (team) => {
     team.user_id === user.id ? setSelectedUserTeam(team) : setSelectedOpponentTeam(team)
@@ -137,6 +142,7 @@ const Teams = ({ user, myTeams, opponents, handleDeleteTeam }) => {
                 handleSelectTeam={handleSelectTeam} 
                 selectedUserTeam={selectedUserTeam} 
                 handleDeleteTeam={handleDeleteTeam}
+                handleDeleteLastTeam={handleDeleteLastTeam}
               />
             ))}
           </div>
