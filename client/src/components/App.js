@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="">
       <Router>
-        <Navigation user={user} setUser={setUser} setPositions={setPositions} myTeams={myTeams} opponents={opponents}/>
+        <Navigation user={user} setUser={setUser} setPositions={setPositions} myTeams={myTeams} setMyTeams={setMyTeams} opponents={opponents} setOpponents={setOpponents}/>
         <Routes>
           <Route path="/"
             element={

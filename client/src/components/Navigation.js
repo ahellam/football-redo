@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 
-const Navigation = ({ user, setUser, setPositions, myTeams, opponents}) => {
+const Navigation = ({ user, setUser, setPositions, myTeams, setMyTeams, opponents, setOpponents }) => {
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     console.log('logged out')
-    localStorage.removeItem("token")
     setUser(null)
+    setMyTeams(null)
+    setOpponents(null)
     setPositions(null)
+    localStorage.removeItem("token")
     navigate('/login')
   }
 

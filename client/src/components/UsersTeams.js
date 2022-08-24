@@ -29,7 +29,6 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
             ? () => handleDeleteTeam(myTeam)
             : () => handleLastTeam(myTeam)
           }
-          // onClick={() => console.log(myTeams)}
         >
           Delete
         </button>

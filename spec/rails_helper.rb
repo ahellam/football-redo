@@ -73,5 +73,4 @@ def log_in
   sleep 1
   find("[id=log-in-button]").click
   sleep 1
-  # puts "BUTTS"
 end

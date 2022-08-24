@@ -10,6 +10,7 @@ RSpec.describe "Correct Content and Path", type: :system do
   it "logs in and is redirected to homepage" do 
   visit("http://localhost:4000/login")
 
+  # log_in method is being called from rails_helper
   log_in
 
   expect(page).to have_current_path("/")
