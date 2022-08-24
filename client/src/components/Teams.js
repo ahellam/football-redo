@@ -138,7 +138,8 @@ const Teams = ({ user, myTeams, setMyTeams, opponents, handleDeleteTeam, handleD
             {myTeams.map((myTeam) => (
               <UsersTeams 
                 key={myTeam.id} 
-                myTeam={myTeam} 
+                myTeam={myTeam}
+                myTeams={myTeams}
                 handleSelectTeam={handleSelectTeam} 
                 selectedUserTeam={selectedUserTeam} 
                 handleDeleteTeam={handleDeleteTeam}

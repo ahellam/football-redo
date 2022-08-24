@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import UserTeamPlayers from "./UserTeamPlayers";
 
-const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTeam, handleDeleteLastTeam }) => {
+const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTeam, handleDeleteLastTeam, myTeams }) => {
 
   const navigate = useNavigate()
 
@@ -25,10 +25,11 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
         </h1>
         <button 
           className={selectedUserTeam ?  "team-inactive-button" : "team-delete-button"}
-          onClick={myTeam.length > 1 
+          onClick={myTeams.length > 1 
             ? () => handleDeleteTeam(myTeam)
             : () => handleLastTeam(myTeam)
           }
+          // onClick={() => console.log(myTeams)}
         >
           Delete
         </button>

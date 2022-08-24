@@ -61,4 +61,17 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # config.include LoginHelper, type: :system
+end
+
+def log_in
+  within("#log-in") do 
+    fill_in "username", with: "test"
+    fill_in "password", with: "test"
+  end
+  sleep 1
+  find("[id=log-in-button]").click
+  sleep 1
+  # puts "BUTTS"
 end
