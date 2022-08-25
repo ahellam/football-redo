@@ -18,6 +18,7 @@ const Runningbacks = ({ runningback, selectedRB, handleDraftPOS, balance, twoPos
         <h4 className="">Rank: {runningback.rank}</h4>
       </div>
       <button
+        id={`draft-button-rb-${runningback.id}`}
         className={
           selectedRB ||
           runningback.price > balance || (!twoPositionsSelected && runningback.price + 100 > balance)

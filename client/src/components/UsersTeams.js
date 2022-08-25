@@ -20,7 +20,7 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
         >
           Select
         </button>
-        <h1 className="text-center text-lg font-semibold m-auto">
+        <h1 id={`user-team-name-${myTeam.name}`}className="text-center text-lg font-semibold m-auto">
           {myTeam.name}
         </h1>
         <button 

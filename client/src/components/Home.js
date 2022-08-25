@@ -75,7 +75,7 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
 
     <div className="mt-2 text-2xl bg-white font-semibold text-center sticky top-16 z-40">
       <p className=" my-1 font-bold">Remaining Balance: <span className="text-green-500">{`$${balance}`}</span></p>
-      {allPositionsSelected && <form onSubmit={draftSelectedTeam}>
+      {allPositionsSelected && <form id={`name-your-team`} onSubmit={draftSelectedTeam}>
         <input 
           placeholder="Name Your Team" 
           className="text-center text-lg font-bold border border-black rounded-md py-2 px-4 mx-1"
@@ -83,6 +83,7 @@ const Home = ({ positions, user, myTeams, setMyTeams }) => {
           onChange={(e) => setTeamName(e.target.value)}
         ></input>
         {teamName && <button 
+          id="draft-this-team-button"
           className="hover:bg-green-500 hover:text-white active:bg-green-700
           text-lg font-bold border border-black rounded-md py-2 px-4"
           type="submit"

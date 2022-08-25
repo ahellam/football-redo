@@ -15,6 +15,7 @@ const Quarterbacks = ({ quarterback, selectedQB, handleDraftPOS, balance, twoPos
         <h4 className="">Rank: {quarterback.rank}</h4>
       </div>
       <button
+        id={`draft-button-qb-${quarterback.id}`}
         className={
           selectedQB ||
           quarterback.price > balance || (!twoPositionsSelected && quarterback.price + 100 > balance)
