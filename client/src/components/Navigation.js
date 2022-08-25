@@ -27,7 +27,7 @@ const Navigation = ({ user, setUser, setPositions, myTeams, setMyTeams, opponent
           ? "m-auto col-start-6 font-semibold hover:font-bold text-green-500"
           : "m-auto col-start-6 font-semibold hover:font-bold active:text-green-500"
       ]}>Home</NavLink>}
-      { user && myTeams && opponents && <NavLink to="/teams" className={({isActive}) => [
+      { user && myTeams && opponents && <NavLink to="/teams" id="teams-link" className={({isActive}) => [
         isActive
           ? "m-auto col-start-7 font-semibold hover:font-bold text-green-500"
           : "m-auto col-start-7 font-semibold hover:font-bold active:text-green-500"
