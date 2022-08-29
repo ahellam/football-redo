@@ -6,6 +6,7 @@ const OpponentTeams = ({ opponent, handleSelectTeam, selectedOpponentTeam, handl
     <div className={selectedOpponentTeam ? "team-card opacity-25" : "team-card"}>
       <div className="grid grid-cols-3">
         <button
+        id={`select-opponent-team-${opponent.name}`}
           className={selectedOpponentTeam ? "team-inactive-button" : "team-select-button"}
           onClick={selectedOpponentTeam ? null : () => handleSelectTeam(opponent)}
         >

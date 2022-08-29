@@ -2,13 +2,8 @@ import React from "react";
 import OpponentSeasonGamesInfo from "./OpponentSeasonGamesInfo";
 import UserSeasonGamesInfo from "./UserSeasonGamesInfo";
 
-const SeasonGamesInfo = ({
-  handleClearSeasonData,
-  usersSeasonGamesByWeek,
-  opponentsSeasonGamesByWeek,
-  opponentTotalWins,
-  userTotalWins,
-}) => {
+const SeasonGamesInfo = ({  handleClearSeasonData, usersSeasonGamesByWeek, opponentsSeasonGamesByWeek, opponentTotalWins, userTotalWins }) => {
+
   const usersWeeklyTotalPts = usersSeasonGamesByWeek.map(
     (games) =>
       games
@@ -66,19 +61,19 @@ const SeasonGamesInfo = ({
           </div>
         </div>
         <div className="grid grid-flow-col font-extrabold">
-          <p>Total Wins: {userTotalWins}</p>
-          <p>Total Points: {parseFloat(usersTotalPts.toFixed(2))}</p>
+          <p id="user-season-total-wins">Total Wins: {userTotalWins}</p>
+          <p id="user-season-total-points">Total Points: {parseFloat(usersTotalPts.toFixed(2))}</p>
         </div>
         <div className="grid grid-flow-col font-extrabold">
-          <p>Total Wins: {opponentTotalWins}</p>
-          <p>Total Points: {parseFloat(opponentsTotalPts.toFixed(2))}</p>
+          <p id="opponent-season-total-wins">Total Wins: {opponentTotalWins}</p>
+          <p id="opponent-season-total-points">Total Points: {parseFloat(opponentsTotalPts.toFixed(2))}</p>
         </div>
       </div>
 
-      <div className="text-center text-4xl font-extrabold my-2 border-t-2 border-b-2 border-black max-w-sm m-auto">
+      <div id="who-won-season" className="text-center text-4xl font-extrabold my-2 border-t-2 border-b-2 border-black max-w-sm m-auto">
         {whoWonText}
       </div>
-      <button className="drop-button m-1" onClick={handleClearSeasonData}>
+      <button id="clear-season-button" className="drop-button m-1" onClick={handleClearSeasonData}>
         Clear Season
       </button>
     </div>

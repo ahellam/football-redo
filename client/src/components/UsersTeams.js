@@ -15,6 +15,7 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
     <div className={selectedUserTeam ? "team-card opacity-25" : "team-card"}>
       <div className="grid grid-cols-3">
         <button
+          id={`select-user-team-${myTeam.name}`}
           className={selectedUserTeam ? "team-inactive-button" : "team-select-button"}
           onClick={selectedUserTeam ?  null : () => handleSelectTeam(myTeam)}
         >
@@ -24,6 +25,7 @@ const UsersTeams = ({ myTeam, handleSelectTeam, handleDeleteTeam, selectedUserTe
           {myTeam.name}
         </h1>
         <button 
+          id={`delete-user-team-${myTeam.name}`}
           className={selectedUserTeam ?  "team-inactive-button" : "team-delete-button"}
           onClick={myTeams.length > 1 
             ? () => handleDeleteTeam(myTeam)

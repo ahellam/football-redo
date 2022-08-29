@@ -94,11 +94,13 @@ const Teams = ({ user, myTeams, setMyTeams, opponents, handleDeleteTeam, handleD
               >Clear Teams
             </button>
             <button
+              id="play-random-week-button"
               className="play-button m-1"
               onClick={handlePlayRandomGame}
               >Play Random Week
             </button>
             <button
+              id="play-full-season-button"
               className="play-button m-1"
               onClick={handlePlaySeason}
               >Play Full Season

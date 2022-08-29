@@ -18,8 +18,8 @@ const RandomGameInfo = ({ usersGamesThatWeek, opponentsGamesThatWeek, handleClea
               <UserRandomGameInfo key={game.id} game={game}/>
             ))}
           </div>
-          <p className="mt-2 border-b-2 border-black w-[30%] m-auto text-center">Total: <span className="text-blue-500 font-bold">{usersTotalPointsThatWeek}</span> pts</p>
-          <p className="text-sm font-bold">{whoWonLeft}</p>
+          <p className="mt-2 border-b-2 border-black w-[30%] m-auto text-center">Total: <span id={`random-user-pts-total`} className="text-blue-500 font-bold">{usersTotalPointsThatWeek}</span> pts</p>
+          <p id="who-won-left" className="text-sm font-bold">{whoWonLeft}</p>
         </div>
         <div>
           <div className="grid grid-flow-col">
@@ -27,14 +27,15 @@ const RandomGameInfo = ({ usersGamesThatWeek, opponentsGamesThatWeek, handleClea
               <OpponentRandomGameInfo key={game.id} game={game} />
             ))}
           </div>
-          <p className="mt-2 border-b-2 border-black w-[30%] m-auto text-center">Total: <span className="text-blue-500 font-bold">{opponentsTotalPointsThatWeek}</span> pts</p>
-          <p className="text-sm font-bold">{whoWonRight}</p>
+          <p className="mt-2 border-b-2 border-black w-[30%] m-auto text-center">Total: <span id={`random-opponent-pts-total`} className="text-blue-500 font-bold">{opponentsTotalPointsThatWeek}</span> pts</p>
+          <p id="who-won-right" className="text-sm font-bold">{whoWonRight}</p>
         </div>
       </div>
       <p className="text-base font-bold">
         Week: <span className="text-blue-500">{usersGamesThatWeek[0].week}</span>
       </p>
       <button
+        id={`clear-games-button`}
         className="drop-button m-1"
         onClick={handleClearGameData}
       >Clear Games

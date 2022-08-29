@@ -10,7 +10,7 @@ const SelectedTeams = ({ selectedUserTeam, selectedOpponentTeam }) => {
           <>
           <div className="">
 
-            <h1 className="text-lg font-bold">{selectedUserTeam.name}</h1>
+            <h1 id={`selected-user-team-name-${selectedUserTeam.name}`} className="text-lg font-bold">{selectedUserTeam.name}</h1>
 
           </div>
           <div className=" grid grid-cols-3 grid-flow-row gap-1">
@@ -28,7 +28,7 @@ const SelectedTeams = ({ selectedUserTeam, selectedOpponentTeam }) => {
           <>
           <div className="">
 
-            <h1 className="text-lg font-bold">{selectedOpponentTeam.name}</h1>
+            <h1 id={`selected-opponent-team-name-${selectedOpponentTeam.name}`} className="text-lg font-bold">{selectedOpponentTeam.name}</h1>
 
           </div>
           <div className=" grid grid-cols-3 grid-flow-row gap-1">
