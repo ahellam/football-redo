@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
@@ -79,7 +79,6 @@ function App() {
 
   return (
     <div className="">
-      <Router>
         <Navigation user={user} setUser={setUser} setPositions={setPositions} myTeams={myTeams} setMyTeams={setMyTeams} opponents={opponents} setOpponents={setOpponents}/>
         <Routes>
           <Route path="/"
@@ -98,7 +97,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/teams" element={<Teams user={user} myTeams={myTeams} setMyTeams={setMyTeams} opponents={opponents} handleDeleteTeam={handleDeleteTeam} handleDeleteLastTeam={handleDeleteLastTeam}/>} />
         </Routes>
-      </Router>
     </div>
   );
 }
